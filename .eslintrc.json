@@ -1,0 +1,274 @@
+{
+    "root": true,
+    "ignorePatterns": ["**/*"],
+    "plugins": [
+      "@nrwl/nx",
+      "react",
+      "effector",
+      "import",
+      "unused-imports",
+      "prettier"
+    ],
+  
+    "overrides": [
+      {
+        "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+        "rules": {
+          "@nrwl/nx/enforce-module-boundaries": [
+            "off",
+            {
+              "enforceBuildableLibDependency": true,
+              "allow": [],
+              "depConstraints": [
+                {
+                  "sourceTag": "*",
+                  "onlyDependOnLibsWithTags": ["*"]
+                }
+              ]
+            }
+          ]
+        }
+      },
+  
+      {
+        "files": ["*.ts", "*.tsx"],
+        "extends": [
+          "plugin:@nrwl/nx/typescript",
+          "plugin:effector/recommended",
+          "plugin:effector/scope",
+          "plugin:json/recommended",
+          "prettier"
+        ],
+        "rules": {
+          "prettier/prettier": [
+            "warn",
+            {
+              "endOfLine": "auto"
+            }
+          ],
+  
+          // disable
+          "eslintjsx-a11y/img-redundant-alt": "off",
+  
+          "no-useless-escape": "off",
+          "no-extra-boolean-cast": "off",
+          "react-hooks/exhaustive-deps": "off",
+          "no-unused-vars": "off",
+          "no-redeclare": "off",
+          "no-undef": "off",
+  
+          "dot-notation": "warn",
+          "valid-typeof": "warn",
+          "no-implicit-globals": "error",
+          "no-lonely-if": "error",
+          "no-proto": "error",
+          "no-return-assign": "error",
+          "no-script-url": "error",
+          "no-undef-init": "error",
+          "no-unneeded-ternary": "error",
+          "no-var": "error",
+          "no-useless-rename": "error",
+          "no-useless-catch": "error",
+          "no-useless-computed-key": "error",
+          "no-useless-concat": "error",
+          "prefer-arrow-callback": "error",
+          "prefer-template": "error",
+          "eol-last": ["error", "always"],
+  
+          "comma-dangle": ["error", "never"],
+          "operator-assignment": ["error", "always"],
+          "arrow-body-style": ["warn", "as-needed"],
+          "jsx-quotes": ["warn", "prefer-single"],
+  
+          "use-isnan": ["error", { "enforceForSwitchCase": true }],
+  
+          "padding-line-between-statements": [
+            "error",
+  
+            {
+              "blankLine": "always",
+              "prev": "import",
+              "next": "import"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "block"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "block-like"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "export",
+              "next": "export"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "block-like"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "function"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "function",
+              "next": "*"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "const",
+              "next": "let"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "let",
+              "next": "const"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "const",
+              "next": "let"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "return"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "try"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "try",
+              "next": "*"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "switch"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "switch",
+              "next": "*"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "while"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "while",
+              "next": "*"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "*",
+              "next": "for"
+            },
+  
+            {
+              "blankLine": "always",
+              "prev": "for",
+              "next": "*"
+            }
+          ],
+  
+          "import/no-internal-modules": "off",
+          "import/group-exports": "error",
+          "import/exports-last": "error",
+          "import/export": "error",
+          "import/no-deprecated": "error",
+  
+          "unused-imports/no-unused-imports": "error",
+  
+          "react/display-name": "off",
+          "react/no-danger-with-children": "error",
+          "react/no-deprecated": "error",
+          "react/no-find-dom-node": "error",
+          "react/no-invalid-html-attribute": "error",
+          "react/forbid-foreign-prop-types": "error",
+          "react/no-render-return-value": "error",
+          "react/no-string-refs": "error",
+          "react/no-this-in-sfc": "error",
+          "react/no-unknown-property": "error",
+          "react/no-namespace": "error",
+          "react/no-unstable-nested-components": "error",
+          "react/no-unused-prop-types": "error",
+          "react/prefer-stateless-function": "error",
+          "react/self-closing-comp": "error",
+          "react/style-prop-object": "error",
+          "react/void-dom-elements-no-children": "error",
+          "react/jsx-closing-tag-location": "error",
+          "react/jsx-pascal-case": "error",
+          "react/jsx-key": "error",
+          // "react/jsx-newline": "error",
+          "react/jsx-no-constructed-context-values": "error",
+          "react/jsx-no-duplicate-props": "error",
+          "react/jsx-no-script-url": "error",
+          "react/jsx-no-target-blank": "error",
+          "react/jsx-fragments": ["error", "syntax"],
+          "react/jsx-curly-brace-presence": ["error", "never"],
+          "react/jsx-boolean-value": ["error", "never"],
+          "react/destructuring-assignment": ["error", "always"],
+  
+          "react/jsx-no-useless-fragment": [
+            "error",
+            { "allowExpressions": true }
+          ],
+          "react/jsx-max-depth": ["error", { "max": 7 }],
+          "react/no-children-prop": ["error", { "allowFunctions": true }],
+  
+          "react/function-component-definition": [
+            "error",
+            {
+              "namedComponents": "arrow-function",
+              "unnamedComponents": "arrow-function"
+            }
+          ],
+  
+          "react/jsx-handler-names": [
+            "error",
+            {
+              "eventHandlerPrefix": "on",
+              "eventHandlerPropPrefix": "on",
+              "checkLocalVariables": true,
+              "checkInlineFunction": false
+            }
+          ]
+        }
+      },
+      {
+        "files": ["*.js", "*.jsx"],
+        "extends": ["plugin:@nrwl/nx/javascript"],
+        "rules": {}
+      }
+    ]
+  }
+  

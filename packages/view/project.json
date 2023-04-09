@@ -30,6 +30,14 @@
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/packages/view"
       }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["packages/view/**/*.{ts,tsx,js,jsx}"]
+      }
     }
   },
   "tags": []

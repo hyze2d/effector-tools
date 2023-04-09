@@ -1,6 +1,5 @@
-interface IFactorioBuilder { 
-    model: any;
-}
+type IFactorioBuilder = {
+  model: any;
+};
 
-
-export {IFactorioBuilder}
+export type { IFactorioBuilder };

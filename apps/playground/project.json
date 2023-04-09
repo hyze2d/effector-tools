@@ -59,6 +59,14 @@
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/playground"
       }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["apps/playground/**/*.{ts,tsx,js,jsx}"]
+      }
     }
   },
   "tags": []
