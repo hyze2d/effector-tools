@@ -1,15 +1,13 @@
-const EMPTY_META = {};
+type PluginResult<Props = any, Meta = any> = {
+  meta: Meta;
 
-const EMPTY_PROPS = {};
+  props: Props;
+};
 
-abstract class FactoryPlugin<Input> {
-  public meta(props: any) {
-    return EMPTY_META;
-  }
+type IPlugin<Params = any, Props = any, Meta = any> = (
+  params: Params,
+  props: any,
+  meta: any
+) => PluginResult<Props, Meta>;
 
-  public props(input: Input, props: any, meta: any) {
-    return EMPTY_PROPS;
-  }
-}
-
-export { FactoryPlugin };
+export type { IPlugin, PluginResult };

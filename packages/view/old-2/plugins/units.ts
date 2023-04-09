@@ -2,20 +2,18 @@ import type { Event, Store } from 'effector';
 
 import { useUnit } from 'effector-react';
 
-import { FactoryPlugin } from '../plugin';
+import type { IPlugin } from '../plugin';
 
 type EventOrStore<T = any> = Event<T> | Store<T>;
 
-type Input =
+type Shape =
   | ((...args: any[]) => Record<string, EventOrStore>)
   | Record<string, EventOrStore>;
 
-class UnitsPlugin extends FactoryPlugin<Input> {
-  public constructor() {
-    super();
-  }
+class UnitsPlugin<Input extends Shape> implements IPlugin<Input> {
+  public readonly inputType!: Input;
 
-  public override props(input: Input, props: any, meta: any) {
+  public process(input: Input, props: any, meta: any) {
     if (typeof input === 'function') {
       return useUnit(input(meta, props));
     }
