@@ -12,8 +12,6 @@ import { FactorioPlugin } from './plugins/factorio';
 
 import type { AnyPlugin } from './plugin';
 
-type Fn = (...args: any[]) => any;
-
 type PluginsMap = Record<string, AnyPlugin>;
 
 type ViewConfig<DefaultProps = {}, Ref = undefined> = {

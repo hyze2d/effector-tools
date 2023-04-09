@@ -1,5 +1,7 @@
 import type { Effect, Event, Store } from 'effector';
 
+type Fn = (...args: any[]) => any;
+
 type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
   ? 1
   : 2
