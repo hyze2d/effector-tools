@@ -21,8 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@effector-tools/view": ["packages/view/src/index.ts"],
-      "@effector-tools/view/factorio": ["packages/view/src/factorio.ts"],
-      "@effector-tools/view/i18n": ["packages/view/src/i18n.ts"]
+      "@effector-tools/view/plugins/*": ["packages/view/src/plugins/*"],
     }
   },
   "exclude": ["node_modules", "tmp"]
