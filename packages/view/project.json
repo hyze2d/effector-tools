@@ -23,13 +23,6 @@
       },
       "dependsOn": ["build"]
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/view/**/*.ts"]
-      }
-    },
     "test": {
       "executor": "@nrwl/vite:test",
       "outputs": ["coverage/packages/view"],

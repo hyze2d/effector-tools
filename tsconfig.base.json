@@ -20,7 +20,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@effector-tools/view": ["packages/view/src/index.ts"]
+      "@effector-tools/view": ["packages/view/src/index.ts"],
+      "@effector-tools/view/factorio": ["packages/view/src/factorio.ts"],
+      "@effector-tools/view/i18n": ["packages/view/src/i18n.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
