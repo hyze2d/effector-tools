@@ -1,6 +1,0 @@
-
-interface IViewBuilder {
-
-}
-
-export {IViewBuilder}

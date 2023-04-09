@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/ban-types */
 import type { TFunction } from 'i18next';
 
@@ -9,8 +8,6 @@ import type {
   MemoExoticComponent,
   RefAttributes
 } from 'react';
-
-
 
 type OmitUK<
   Props,
@@ -165,10 +162,11 @@ class ViewBuilder<
     CalculatedProps = Omit<Props, keyof MapResult> &
       MapResult &
       ConfigBasedProps,
-    RawProps = Omit<Props, keyof MapResult> & MapResult & ConfigBasedProps
+    RawProps = Omit<Props, keyof MapResult> & MapResult & ConfigBasedProps,
+    OuterProps = Omit<Props, keyof DefaultProps> & DefaultProps
   >(
     View: RenderFunction<CalculatedProps, Config>
-  ): ResultComponent<CalculatedProps, Config> & {
+  ): ResultComponent<OuterProps, Config> & {
     Raw: ResultComponent<RawProps, Config>;
   } {
     let result: any;
@@ -177,8 +175,4 @@ class ViewBuilder<
   }
 }
 
-function createView<P = {}>() {
-  return new ViewBuilder<P>();
-}
-
-export { createView };
+export { ViewBuilder };
