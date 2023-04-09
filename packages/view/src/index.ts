@@ -1,26 +1,20 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
-import type { Event, Store } from 'effector';
-
 import { createStore } from 'effector';
-
-import { useUnit } from 'effector-react';
 
 import type { ComponentType } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { UnitsPlugin, UseUnitPlugin } from './plugins/units';
 
-import type { IPlugin } from './plugin';
+import { TFunctionPlugin } from './plugins/t';
 
-import type { UseUnit } from './common';
+import { FactorioPlugin } from './plugins/factorio';
+
+import type { AnyPlugin } from './plugin';
 
 type Fn = (...args: any[]) => any;
 
-type EventOrStore<T = any> = Event<T> | Store<T>;
-
-type UnitsParam = Record<string, EventOrStore>;
-
-type PluginsMap = Record<string, IPlugin>;
+type PluginsMap = Record<string, AnyPlugin>;
 
 type ViewConfig<DefaultProps = {}, Ref = undefined> = {
   ref: Ref;
@@ -53,17 +47,13 @@ type ViewBuilder<
 
   view: () => ComponentType;
 } & {
-  [P in keyof Plugins]: Parameters<Plugins[P]>[0] extends Fn
-    ? <T extends ReturnType<Plugins[P]>>(
-        fn: (props: Props & InnerProps, meta: Meta) => T
-      ) => ViewBuilder<Plugins, Props, InnerProps & T, Meta, Config>
-    : number;
+  [P in keyof Plugins]: any;
 };
 
 class FactoryBuilder<Plugins extends PluginsMap> {
   private readonly plugins = {};
 
-  public plugin<Plugin extends IPlugin, Name extends string>(
+  public plugin<Plugin extends AnyPlugin, Name extends string>(
     name: Name,
     plugin: Plugin
   ): FactoryBuilder<Plugins & Record<Name, Plugin>> {
@@ -77,54 +67,18 @@ class FactoryBuilder<Plugins extends PluginsMap> {
 
 const createFactory: () => FactoryBuilder<{}> = null!;
 
-const unitsPlugin = <Param extends UnitsParam>(units: Param) => ({
-  meta: {},
-
-  props: useUnit(units)
-});
-
-const useUnitPlugin = <
-  Props,
-  Meta,
-  Param extends (props: Props, Meta: Meta) => UnitsParam
->(
-  selector: Param,
-  props: Props,
-  meta: Meta
-) => ({
-  meta: {},
-
-  props: useUnit(selector(props, meta)) as UseUnit<Param>
-});
-
-const tFunctionPlugin = () => ({
-  meta: {},
-
-  props: {
-    t: useTranslation().t
-  }
-});
-
-const factorioPlugin = (model: { useModel: () => any }) => ({
-  props: {},
-
-  meta: {
-    $$model: model.useModel()
-  }
-});
-
 const createView = createFactory()
   .plugin(
     'units',
 
-    unitsPlugin
+    new UnitsPlugin()
   )
 
-  .plugin('useUnit', useUnitPlugin)
+  .plugin('useUnit', new UseUnitPlugin())
 
-  .plugin('t', tFunctionPlugin)
+  .plugin('t', new TFunctionPlugin())
 
-  .plugin('model', factorioPlugin)
+  .plugin('model', new FactorioPlugin())
 
   .build();
 
